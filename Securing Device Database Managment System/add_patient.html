@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Patient</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #3f9be9;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #1c6ac9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Patient Details</h2>
+    <form id="addPatientForm">
+        <label for="patientName">Patient Name:</label>
+        <input type="text" id="patientName" name="patientName" required>
+
+        <label for="patientAge">Age:</label>
+        <input type="number" id="patientAge" name="patientAge" required>
+
+        <label for="patientGender">Gender:</label>
+        <select id="patientGender" name="patientGender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="patientDisease">Disease:</label>
+        <input type="text" id="patientDisease" name="patientDisease" required>
+
+        <label for="consultedDoctor">Consulted Doctor:</label>
+        <input type="text" id="consultedDoctor" name="consultedDoctor" required>
+
+        <input type="submit" value="Add Patient">
+    </form>
+</div>
+
+<script>
+    document.getElementById("addPatientForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var patientName = document.getElementById("patientName").value;
+        var patientAge = document.getElementById("patientAge").value;
+        var patientGender = document.getElementById("patientGender").value;
+        var patientDisease = document.getElementById("patientDisease").value;
+        var consultedDoctor = document.getElementById("consultedDoctor").value;
+
+        var newRow = "<tr><td>" + patientName + "</td><td>" + patientAge + "</td><td>" + patientGender + "</td><td>" + patientDisease + "</td><td>" + consultedDoctor + "</td></tr>";
+        // Append the new row to the patient table on the dashboard
+        parent.window.opener.document.getElementById("patientTable").innerHTML += newRow;
+
+        // Clear the form fields after adding the patient
+        document.getElementById("addPatientForm").reset();
+    });
+</script>
+
+</body>
+</html>
